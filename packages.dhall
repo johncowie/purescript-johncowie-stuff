@@ -170,7 +170,7 @@ let additions =
             , "transformers"
             ]
           , repo = "https://github.com/johncowie/purescript-envisage.git"
-          , version = "v0.0.4"
+          , version = "v0.0.5"
           }
       }
 
