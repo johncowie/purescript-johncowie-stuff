@@ -11,7 +11,7 @@ data StubCode = StubCode String
 
 oauth :: String -> OAuth
 oauth redirect = {
-  redirect: redirect <> "?code=1234"
+  redirect: redirect <> "?code=1234&scope=a b"
 , handleCode: \code -> pure (Right { sub: "100"
                                    , name: "StubUser"
                                    , email: "stub@email.com"})

@@ -37,7 +37,7 @@ queryString :: Array (Tuple String String) -> String
 queryString pairs = print $
                     Query.print identity identity $
                     Query.QueryPairs $
-                    map (\(Tuple k v) -> Tuple (Query.keyFromString k) (Just (Query.valueFromString v))) $
+                    map (\(Tuple k v) -> Tuple (Query.unsafeKeyFromString k) (Just (Query.unsafeValueFromString v))) $
                     pairs
 
 formData :: Array (Tuple String String) -> RequestBody.RequestBody
