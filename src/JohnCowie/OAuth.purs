@@ -39,6 +39,6 @@ type UserData = {
 }
 
 type OAuth = {
-  redirect :: RedirectBackTo -> String
-, handleCode :: OAuthCode -> RedirectBackTo -> Aff (Either String UserData)
+  redirect :: String
+, handleCode :: OAuthCode -> Aff (Either String UserData)
 }
