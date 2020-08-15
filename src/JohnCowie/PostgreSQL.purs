@@ -10,6 +10,7 @@ import Effect (Effect)
 import Effect.Aff (Aff)
 import Effect.Console as Console
 import JohnCowie.PostgreSQL.URI (fromURI)
+import Envisage (var, Component, mkComponent, describe, defaultTo)
 
 type DB = PG.Pool
 
@@ -49,3 +50,7 @@ getDB dbUri = case fromURI dbUri of
     pool <- createConnectionPool poolConfig
     Console.log $ connectionMsg poolConfig
     pure $ Right pool
+
+dbComponent :: String -> Component (Effect (Either String PG.Pool))
+dbComponent uriDefault = mkComponent {dbUri: var "DATABASE_URI" # describe "Postgres DB uri" # defaultTo uriDefault}
+  $ \{dbUri} -> getDB dbUri
