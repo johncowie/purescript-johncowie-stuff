@@ -10,6 +10,7 @@ module JohnCowie.HTTPure
 , BasicRequest
 , Response
 , response
+, redirect
 , addResponseHeader
 , setContentType
 , serve'
