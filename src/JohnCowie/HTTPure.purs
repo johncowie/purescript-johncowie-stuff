@@ -17,6 +17,7 @@ module JohnCowie.HTTPure
 , lookupHeader
 , getCookie
 , setCookie
+, withStatus
 )
 where
 
@@ -89,9 +90,12 @@ type Response a = { headers :: HP.Headers
 response :: forall a. HP.Status -> a -> Response a
 response status body = {headers: Headers.empty, status, body}
 
+withStatus :: forall a. HP.Status -> Response a -> Response a
+withStatus status = _ {status = status}
+
 -- TODO return headers so that redirect is not cached
 redirect :: forall a. (Monoid a) => String -> Response a
-redirect url = addResponseHeader "Location" url $ response 301 mempty
+redirect url = addResponseHeader "Location" url $ response 307 mempty
 
 emptyResponse :: HP.Status -> Response Unit
 emptyResponse status = response status unit
